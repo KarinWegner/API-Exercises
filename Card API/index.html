@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <div class="title">
+        <h2>BlackJack</h2>
+        <button type="button" id="startButton">Start</button></div>
+              <div class="startScreen">  <img class="headerImg" src="https://deckofcardsapi.com/static/img/back.png" alt="">
+</div>
+    </header>
+
+    <main class="hidden">
+        <div class="table" id="dealerTable">
+
+        </div>
+        <div class="controls">
+    <button id="hitButton" type="button">Hit</button>
+    <ul class="scoreHolder">
+
+    
+    <li>
+        <h2>Player:</h2>
+    </li>
+    <li class="score" id="playerScore">
+       <h2>00 </h2>
+    </li>
+    <li id="separator">
+        |
+    </li>
+    <li class="score" id="dealerScore">
+        <h2>00 </h2>
+    </li>
+    <li>
+    <h2>:Dealer</h2>
+    </li>
+</ul>
+    <button id="standButton" type="button">Stand</button>
+        </div>
+        <ul class="statusText"> <h2></h2></ul>
+    <ul class="table" id="playerTable">
+
+    </ul>
+    
+</main>
+<script type="module" src="dealerControls.js"></script>
+    <script src="cardPuller.js"></script>
+    <script  src="blackJack.js"></script>
+    <script src="gameControls.js"></script>
+</body>
+</html>

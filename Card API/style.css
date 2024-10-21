@@ -1,0 +1,123 @@
+body{
+    background-color: green;
+}
+header{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+
+
+    font-size: 40px;
+    margin-bottom: 30px;;
+}
+main{
+    display:flex;
+    flex-direction: column;
+    text-align: center;
+}
+.title{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    flex-wrap: wrap;
+
+}
+.startScreen{
+    width:100vw;
+    text-align: center;
+}
+.statusText{
+    padding:0;
+    margin:0;
+}
+.statusText > h2{ 
+    font-size:30;
+}
+
+
+.controls{
+    display:flex;
+    height:50px;
+    box-sizing: border-box;
+    width:100%;
+    justify-content: center;
+}
+.scoreHolder{
+    margin:0px;
+    padding:0px;
+    display: flex;
+    flex-direction: row;
+
+}
+.scoreHolder, li{
+ list-style: none;
+height:40px;
+}
+.score{
+    width:20px;
+    margin:5px;
+    margin-top:0;
+    padding-bottom:10px
+   
+}
+#separator{
+font-size: 40px;
+padding-top:2px
+}
+#playerScore{
+    padding-right: 4px;
+}
+#dealerScore{
+}
+button{
+    
+width:150px;
+display: block;
+align-self: center;
+padding: 20px 0px 20px 0px;
+font-family: Georgia;
+font-weight: bold;
+background-color: maroon;
+color: white;
+text-shadow: 2px 2px rgb(50, 12, 12);
+font-size: 25px;
+margin:10px;
+}
+#startButton{
+    
+    width:200px;
+margin:0;
+margin-left:30px;
+}
+#standButton{
+    width:150px;
+}
+.hidden{
+    display:none;
+}
+#playerTable{
+    margin-top: 40px;
+    display:flex;
+    flex-direction: row;
+    height:fit-content;
+    flex-wrap: wrap;
+ }#dealerTable{
+    height:200px;
+    padding-bottom: 10px;}
+    #dealerTable > .img{
+        width:100%;
+        max-width: 50px;
+        height:auto;
+    }
+ 
+ img{
+    margin:5px;
+ }
+
+
+.card{
+    width:100%;
+      max-width:150px;
+     height:auto;
+
+}
