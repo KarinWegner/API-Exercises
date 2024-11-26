@@ -1,9 +1,10 @@
 let playerScore = 0
 let dealerScore = 0
 let activePlayer = ''
-let activeTable = 'player'
+let activeTable = ''
 let activeScore = 0
 let highAceCards = []
+let playerFinished = false;
 
 
 
@@ -14,7 +15,10 @@ const ResetPositions = ()=> {
     dealerScore = '00'
     activeScore = 0
     activePlayer = ''
-    SetPlayer()
+    activeTable = ''
+    playerFinished=false;
+    ResetDealerBoard()
+   SetPlayer()
 }
 
 
@@ -70,25 +74,31 @@ function getCardValue(suit){
             return value
 }
 
-function SetPlayer (){
+const  SetPlayer=  ()=>{
     console.log('Stand')
     setScore()
     if(activePlayer === 'player'){
+        playerFinished = true
         activePlayer = 'dealer'
         
     }
     else if(activePlayer == 'dealer'){
+        if(playerFinished){
         endGame(activePlayer, playerScore, dealerScore)
+        }
+        else{
+            activePlayer='player'
+        }
     }
     else{
-        activePlayer = 'player'
+        activePlayer = 'dealer'
     }
     activeTable = document.querySelector('#'+activePlayer+'Table')
          
          activeScore = '0'
          setStatusText('')
          if(activePlayer == 'dealer'){
-            dealerTurn()
+            // dealerDraw()
          }
 }
 function setScore(){

@@ -1,5 +1,6 @@
 const btnDraw = document.querySelector('#hitButton')
 const imgHolder = document.querySelector('#playerTable')
+const cardBackURL = "https://deckofcardsapi.com/static/img/back.png"
 
 
 btnDraw.addEventListener('click', () => {
@@ -8,8 +9,15 @@ btnDraw.addEventListener('click', () => {
     drawCard()
 })
 
+ async function dealerDraw(hiddenStatus){
+    const drawnCard = await drawCard(hiddenStatus)
+    return(drawnCard)
+    
 
-function newGame(){
+ }
+
+async function newGame(){
+    console.log('newgame function')
     score = 0
     gameActive = true
     imgHolder.innerHTML ='';
@@ -20,7 +28,7 @@ function endGame(){
     btnDraw.innerHTML = 'Start'
 }
 
-async function drawCard() {
+async function drawCard(hiddenStatus=false) {
     fetch('https://deckofcardsapi.com/api/deck/new/draw/?count=1', {
         method: 'GET',
         headers: {
@@ -43,11 +51,21 @@ async function drawCard() {
             
             console.log(activeTable.id)
 
+            if(activeTable=="player" || hiddenStatus == false){
             activeTable.innerHTML += `
         <img class="card" id="${cardScore}" src="${cardImageURL}" width="150px"></img>
         `
-    addScore(cardScore)
-
+    
+        addScore(cardScore)
+    }
+        else{
+            activeTable.innerHTML += `
+            <img class="card" id="hiddenCard" src="${cardBackURL}" width="150px"></img>
+            `
+            addHiddenCard(cardScore ,cardImageURL)
+            
+        }
+    
         })
 
 }

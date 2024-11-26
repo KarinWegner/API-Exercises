@@ -17,16 +17,23 @@ btnStart.addEventListener('click', () => {
 })
 btnStand.addEventListener('click', (e) => SetPlayer(e))
 
+const FinishedSetup = async (cb) =>{
+    await setTimeout(()=>{cb()}, 1000)
+    
+  }
 
-
-function newGame() {
+async function newGame() {
     if (initialized === false) {
         console.log('changing game to active')
         btnStart.innerHTML = 'Restart'
 
         initialized=true;
     }
-        startScreen.classList.add('hidden')
+Setup()
+   
+}
+async function Setup(){
+     startScreen.classList.add('hidden')
     playerTable.innerHTML = ''
     dealerTable.innerHTML = ''
     
@@ -34,7 +41,11 @@ function newGame() {
     updateScore(0,'player')
     updateScore(0,'dealer')
     
-    ResetPositions()
+    await ResetPositions()
+    await dealerSetup()
+    await FinishedSetup(m=>SetPlayer(m))
+   
+    console.log('dealerSetup done')
 }
 
 function gameEnd(activePlayer,playerScore, dealerScore) {
@@ -107,4 +118,12 @@ function setStatusText(text){
     const newStatusText = text
     console.log('setStatusText: '+text)
  statusText.innerHTML = `<h2>${text}</h2>`
+}
+
+function flipCard(dealerCardId, cardImage){
+    console.log('flipping dealercard' +dealerCardId)
+    console.log(cardImage)
+    
+    document.querySelector('#dealerCard'+dealerCardId).src = cardImage
+//    selectedCard.src = cardImage
 }
