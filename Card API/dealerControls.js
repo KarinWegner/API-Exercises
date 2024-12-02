@@ -1,6 +1,8 @@
 //Not implemented
 console.log('loaded')
 let cardsRevealed = 0;
+let hiddenCardIMG = ''
+let hiddenCardScore = ''
 
 const ResetDealerBoard = () =>{
   
@@ -15,9 +17,7 @@ const ResetDealerBoard = () =>{
 //   results.image = image
 // }
 
-const func = () =>{
-  setTimeout(10)
-}
+
 const dealerSetup = async ()=>{
   console.log('HELLO')
   await prepareDealerTable()
@@ -25,9 +25,18 @@ const dealerSetup = async ()=>{
  
 console.log('preparedealertable done')
  // revealCard(2)
- 
+ }
 
-}
+ const dealerTurn = async () =>{
+  if(dealerScore > playerScore)
+    gameEnd(activePlayer, playerScore, dealerScore)
+  else{
+    await revealCard()
+    console.log('dealer active score: '+ dealerScore)
+    await addScore(hiddenCardScore)
+    
+  }
+ }
 
 
     async function prepareDealerTable(){
@@ -44,18 +53,19 @@ console.log('preparedealertable done')
 
 
 
-function revealCard(){
+async function revealCard(){
 console.log('function revealCarc')
-  for(i=0;i<cardsRevealed;i++){
-    flipCard(cardsRevealed, hiddenCards[cardsRevealed].image)
-  }
+  
+    await flipCard(hiddenCardScore, hiddenCardIMG)
+  
 
-  cardsRevealed++
+  
 }
 
 
 
-const addHiddenCard = (cardScore, cardImageURL)=>{
-const hiddenCard = {cardScore, cardImageURL}
+const addHiddenCard = (cardScore, cardImage)=>{
+  hiddenCardIMG = cardImage
+  hiddenCardScore=cardScore
 
 }

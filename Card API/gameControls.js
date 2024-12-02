@@ -38,14 +38,17 @@ async function Setup(){
     dealerTable.innerHTML = ''
     
     gameScreen.classList.remove('hidden')
-    updateScore(0,'player')
-    updateScore(0,'dealer')
-    
+    //await ResetScore()   
     await ResetPositions()
     await dealerSetup()
     await FinishedSetup(m=>SetPlayer(m))
    
     console.log('dealerSetup done')
+}
+
+const ResetScore = async ()=>{
+    await updateScore('0','player')
+    await updateScore('0','dealer')
 }
 
 function gameEnd(activePlayer,playerScore, dealerScore) {
@@ -105,6 +108,8 @@ function gameEnd(activePlayer,playerScore, dealerScore) {
             
         
     }
+    ResetScore()
+    console.log('endGame score reset')
 
 }
 
@@ -112,6 +117,7 @@ function updateScore(score, player){
 const scoreHolder = document.querySelector('#'+player+'Score')
 scoreHolder.innerHTML = '' 
 scoreHolder.innerHTML = `<h2>${score}</h2>`
+    console.log('Updated score for '+ player)
 
 }
 function setStatusText(text){
@@ -120,10 +126,10 @@ function setStatusText(text){
  statusText.innerHTML = `<h2>${text}</h2>`
 }
 
-function flipCard(dealerCardId, cardImage){
+const flipCard = async (dealerCardId, cardImage) =>{
     console.log('flipping dealercard' +dealerCardId)
     console.log(cardImage)
     
-    document.querySelector('#dealerCard'+dealerCardId).src = cardImage
+    document.querySelector('#hiddenCard').src = cardImage
 //    selectedCard.src = cardImage
 }

@@ -13,9 +13,12 @@ const ResetPositions = ()=> {
     console.log('score reset')
     playerScore = '00'
     dealerScore = '00'
+     updateScore(0,'player')
+     updateScore(0,'dealer')
     activeScore = 0
     activePlayer = ''
     activeTable = ''
+    highAceCards = new Array
     playerFinished=false;
     ResetDealerBoard()
    SetPlayer()
@@ -74,32 +77,33 @@ function getCardValue(suit){
             return value
 }
 
-const  SetPlayer=  ()=>{
+const  SetPlayer= async ()=>{
     console.log('Stand')
     setScore()
     if(activePlayer === 'player'){
         playerFinished = true
         activePlayer = 'dealer'
+        await dealerTurn()
+        gameEnd(activePlayer, playerScore, dealerScore)
         
     }
     else if(activePlayer == 'dealer'){
         if(playerFinished){
-        endGame(activePlayer, playerScore, dealerScore)
+       return endGame(activePlayer, playerScore, dealerScore)
         }
         else{
             activePlayer='player'
+            activeScore = '0'
         }
     }
     else{
         activePlayer = 'dealer'
+        activeScore=dealerScore
     }
     activeTable = document.querySelector('#'+activePlayer+'Table')
          
-         activeScore = '0'
+         
          setStatusText('')
-         if(activePlayer == 'dealer'){
-            // dealerDraw()
-         }
 }
 function setScore(){
     if(activePlayer == 'player'){
@@ -111,15 +115,7 @@ function setScore(){
 }
 
 
-async function dealerTurn (){
-    console.log('dealerTurn')
-    const fetchDealer = fetch(dealerDraw)//Doesnt work
-    while(dealerScore < 21 && playerScore > dealerScore){
-      await fetchDealer()
-      .then ()
 
-    }
-}
 
  
 

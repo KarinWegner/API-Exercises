@@ -62,8 +62,9 @@ async function drawCard(hiddenStatus=false) {
             activeTable.innerHTML += `
             <img class="card" id="hiddenCard" src="${cardBackURL}" width="150px"></img>
             `
-            addHiddenCard(cardScore ,cardImageURL)
-            
+            console.log('saving hidden image: ' + cardImageURL)
+            console.log('hidden card image saved as: ' +hiddenCard.cardImageURL)
+            addHiddenCard(cardScore, cardImageURL)
         }
     
         })
